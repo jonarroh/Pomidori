@@ -67,5 +67,14 @@ module.exports = {
 			}
 		}
 	},
+	daisyui: {
+		themes: [
+			{
+				mytheme: {
+					'base-100': '#5114B9'
+				}
+			}
+		]
+	},
 	plugins: [require('daisyui')]
 };

@@ -65,7 +65,7 @@ function Countdown() {
 			{isStop ? (
 				<div className="flex flex-row justify-around">
 					<button
-						className="btn btn-active btn-accent me-4"
+						className="btn btn-active me-4 bg-[#5114B9]"
 						onClick={() => {
 							setIsStop(false);
 						}}>
@@ -73,7 +73,7 @@ function Countdown() {
 					</button>
 					{(minutes !== minutesWork || seconds !== secondsWork) && (
 						<button
-							className="btn btn-active btn-accent "
+							className="btn btn-active  bg-[#5114B9]"
 							onClick={() => {
 								setMinutes(minutesWork);
 								setSeconds(secondsWork);
@@ -86,7 +86,7 @@ function Countdown() {
 			) : (
 				<div className="flex flex-row">
 					<button
-						className="btn btn-active btn-primary"
+						className="btn btn-active  bg-[#5114B9]"
 						onClick={() => {
 							setIsStop(true);
 						}}>

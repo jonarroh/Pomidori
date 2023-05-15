@@ -14,6 +14,7 @@ interface Config {
 		seconds: number;
 		minutesWork: number;
 		secondsWork: number;
+		step: number;
 	};
 	setConfig: (config: Config) => void;
 	setTheme: (theme: Theme) => void;
@@ -26,6 +27,7 @@ interface Config {
 	setSeconds: (seconds: number) => void;
 	setMinutesWork: (minutesWork: number) => void;
 	setSecondsWork: (secondsWork: number) => void;
+	setStep: (step: number) => void;
 }
 
 export const useConfigStore = create<Config>((set, get) => ({
@@ -39,7 +41,8 @@ export const useConfigStore = create<Config>((set, get) => ({
 		minutes: 25,
 		seconds: 0,
 		minutesWork: 25,
-		secondsWork: 0
+		secondsWork: 0,
+		step: 1
 	},
 	setConfig: (config: Config) =>
 		set({
@@ -64,5 +67,7 @@ export const useConfigStore = create<Config>((set, get) => ({
 	setMinutesWork: (minutesWork: number) =>
 		set({ config: { ...get().config, minutesWork } }),
 	setSecondsWork: (secondsWork: number) =>
-		set({ config: { ...get().config, secondsWork } })
+		set({ config: { ...get().config, secondsWork } }),
+	setStep: (step: number) =>
+		set({ config: { ...get().config, step } })
 }));

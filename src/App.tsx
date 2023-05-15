@@ -4,6 +4,7 @@ import Countdown from './components/countdown';
 import Config from './components/svg/confindSvg';
 import Modal from './components/ui/modal';
 import Form from './components/ui/form';
+import Steps from './components/ui/steps';
 
 function App() {
 	return (
@@ -25,7 +26,8 @@ function App() {
 					<Form />
 				</Modal>
 			</div>
-			<div className="flex flex-col items-center justify-center w-screen h-4/6">
+			<div className="flex flex-col items-center justify-center w-screen h-4/6 gap-y-4">
+				<Steps />
 				<Countdown />
 			</div>
 		</main>
