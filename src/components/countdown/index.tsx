@@ -1,4 +1,7 @@
-import { useConfigStore } from '../../store/useConfigStore';
+import {
+	NumberOfCycles,
+	useConfigStore
+} from '../../store/useConfigStore';
 import { useEffect } from 'react';
 import Play from '../svg/play';
 import Reset from '../svg/reset';
@@ -6,10 +9,20 @@ import Stop from '../svg/stop';
 
 function Countdown() {
 	const {
-		config: { isStop, minutes, seconds, minutesWork, secondsWork },
+		config: {
+			isStop,
+			minutes,
+			seconds,
+			minutesWork,
+			secondsWork,
+			step,
+			currentCycle
+		},
 		setMinutes,
 		setSeconds,
-		setIsStop
+		setIsStop,
+		setStep,
+		setCurrentCycle
 	} = useConfigStore();
 
 	useEffect(() => {
@@ -26,7 +39,15 @@ function Countdown() {
 		if (isStop) return;
 		if (seconds === 0) {
 			if (minutes === 0) {
-				setIsStop(true);
+				const nextStep =
+					currentCycle === 6 ? 3 : step === 2 ? 1 : step + 1;
+				const updatedCycle = currentCycle + 1;
+				setCurrentCycle(updatedCycle as NumberOfCycles);
+				setCurrentCycle(updatedCycle as NumberOfCycles);
+				setStep(nextStep);
+				setIsStop(false);
+
+				return;
 			} else {
 				setMinutes(minutes - 1);
 				setSeconds(59);
@@ -35,7 +56,6 @@ function Countdown() {
 	}, [seconds, minutes, setIsStop, setMinutes, setSeconds, isStop]);
 
 	useEffect(() => {
-		setIsStop(true);
 		setMinutes(minutesWork);
 		setSeconds(0);
 	}, [minutesWork]);
@@ -58,9 +78,6 @@ function Countdown() {
 					sec
 				</div>
 			</section>
-			{/* <h2 className="text-7xl font-semibold">
-				{minutosString}:{segundosString}
-			</h2> */}
 
 			{isStop ? (
 				<div className="flex flex-row justify-around">
@@ -78,6 +95,8 @@ function Countdown() {
 								setMinutes(minutesWork);
 								setSeconds(secondsWork);
 								setIsStop(false);
+								setCurrentCycle(1);
+								setStep(1);
 							}}>
 							<Reset height={20} width={20} />
 						</button>

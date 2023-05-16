@@ -2,6 +2,7 @@ import { create } from 'zustand';
 
 type Theme = 'dark' | 'light';
 type Language = 'es' | 'en';
+export type NumberOfCycles = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 interface Config {
 	config: {
 		theme: Theme;
@@ -15,6 +16,7 @@ interface Config {
 		minutesWork: number;
 		secondsWork: number;
 		step: number;
+		currentCycle: NumberOfCycles;
 	};
 	setConfig: (config: Config) => void;
 	setTheme: (theme: Theme) => void;
@@ -28,6 +30,7 @@ interface Config {
 	setMinutesWork: (minutesWork: number) => void;
 	setSecondsWork: (secondsWork: number) => void;
 	setStep: (step: number) => void;
+	setCurrentCycle: (currentCycle: NumberOfCycles) => void;
 }
 
 export const useConfigStore = create<Config>((set, get) => ({
@@ -38,11 +41,12 @@ export const useConfigStore = create<Config>((set, get) => ({
 		ShortBreak: false,
 		LongBreak: false,
 		isStop: true,
-		minutes: 25,
-		seconds: 0,
-		minutesWork: 25,
-		secondsWork: 0,
-		step: 1
+		minutes: 0,
+		seconds: 10,
+		minutesWork: 0,
+		secondsWork: 10,
+		step: 1,
+		currentCycle: 1
 	},
 	setConfig: (config: Config) =>
 		set({
@@ -69,5 +73,7 @@ export const useConfigStore = create<Config>((set, get) => ({
 	setSecondsWork: (secondsWork: number) =>
 		set({ config: { ...get().config, secondsWork } }),
 	setStep: (step: number) =>
-		set({ config: { ...get().config, step } })
+		set({ config: { ...get().config, step } }),
+	setCurrentCycle: (currentCycle: NumberOfCycles) =>
+		set({ config: { ...get().config, currentCycle } })
 }));

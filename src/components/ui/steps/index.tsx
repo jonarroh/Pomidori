@@ -1,3 +1,4 @@
+import { useNextStep } from '../../../hooks/useNextStep';
 import { useConfigStore } from '../../../store/useConfigStore';
 
 function Steps() {
@@ -5,11 +6,10 @@ function Steps() {
 		setStep,
 		config: { step }
 	} = useConfigStore();
-
+	useNextStep();
 	const handleStepClick = (selectedStep: number) => {
 		setStep(selectedStep);
 	};
-	console.log('step', step);
 
 	return (
 		<>

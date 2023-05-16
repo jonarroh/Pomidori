@@ -5,8 +5,12 @@ import Config from './components/svg/confindSvg';
 import Modal from './components/ui/modal';
 import Form from './components/ui/form';
 import Steps from './components/ui/steps';
+import { useConfigStore } from './store/useConfigStore';
 
 function App() {
+	const {
+		config: { currentCycle }
+	} = useConfigStore();
 	return (
 		<main className="w-screen h-screen bg-violet-950 text-white ">
 			<div className="flex flex-row items-center justify-around w-screen h-1/6 px-4 ">
@@ -19,7 +23,7 @@ function App() {
 						height={45}
 					/>
 				</div>
-
+				{currentCycle}
 				<Modal
 					title="Configuraciones"
 					button={<Config width={20} height={20} />}>
