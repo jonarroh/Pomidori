@@ -6,6 +6,10 @@ import { useEffect } from 'react';
 import Play from '../svg/play';
 import Reset from '../svg/reset';
 import Stop from '../svg/stop';
+import useSound from '../../hooks/useSound';
+const SOUND = {
+	CLICK: '/button.mp3'
+};
 
 function Countdown() {
 	const {
@@ -24,6 +28,7 @@ function Countdown() {
 		setStep,
 		setCurrentCycle
 	} = useConfigStore();
+	const { audioRef, playSound } = useSound();
 
 	useEffect(() => {
 		if (isStop) return;
@@ -64,6 +69,9 @@ function Countdown() {
 	const minutosString = minutes.toString().padStart(2, '0');
 	return (
 		<>
+			<audio ref={audioRef}>
+				<source src={SOUND.CLICK} type="audio/mpeg" />
+			</audio>
 			<section className="flex flex-row justify-center gap-2 mb-4">
 				<div className="flex flex-col p-2 bg-orange-400 text-white rounded-box  ">
 					<span className="countdown font-mono text-8xl font-semibold">
@@ -82,16 +90,18 @@ function Countdown() {
 			{isStop ? (
 				<div className="flex flex-row justify-around">
 					<button
-						className="btn btn-active me-4 bg-[#5114B9]"
+						className="btn hover:bg-base-100 me-4 bg-[#5114B9]"
 						onClick={() => {
+							playSound();
 							setIsStop(false);
 						}}>
 						<Play height={20} width={20} />
 					</button>
 					{(minutes !== minutesWork || seconds !== secondsWork) && (
 						<button
-							className="btn btn-active  bg-[#5114B9]"
+							className="btn hover:bg-base-100  bg-[#5114B9]"
 							onClick={() => {
+								playSound();
 								setMinutes(minutesWork);
 								setSeconds(secondsWork);
 								setIsStop(false);
@@ -105,8 +115,9 @@ function Countdown() {
 			) : (
 				<div className="flex flex-row">
 					<button
-						className="btn btn-active  bg-[#5114B9]"
+						className="btn hover:bg-base-100  bg-[#5114B9]"
 						onClick={() => {
+							playSound();
 							setIsStop(true);
 						}}>
 						<Stop height={20} width={20} />

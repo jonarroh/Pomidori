@@ -5,10 +5,3 @@ Pomidori es una aplicación de escritorio para la técnica de Pomodoro. Esta té
 De momento, Pomidori solo está disponible para Windows.
 
 ![Alt text](public/495shots_so.png)
-
-## TODO
-
-- [x] Crear un contador de pomodoros
-- [] Crear un contador de descansos
-- [] Agregar un toque de sonido al iniciar y finalizar un pomodoro
-- [] Agregar un toque de sonido al iniciar y finalizar un descanso

@@ -9,14 +9,14 @@ export function useNextStep() {
 		setSecondsWork,
 		setCurrentCycle,
 		setStep,
-		config: { step }
+		config: { step, minutesWork, secondsWork }
 	} = useConfigStore();
 
 	useEffect(() => {
 		let stepData = [
-			{ minutes: 0, seconds: 5, step: 1 },
-			{ minutes: 0, seconds: 5, step: 2 },
-			{ minutes: 0, seconds: 2, step: 3 }
+			{ minutes: minutesWork, seconds: secondsWork, step: 1 },
+			{ minutes: 5, seconds: secondsWork, step: 2 },
+			{ minutes: 15, seconds: secondsWork, step: 3 }
 		];
 
 		const currentStepData = stepData.find(data => data.step === step);
@@ -25,6 +25,9 @@ export function useNextStep() {
 			const { minutes, seconds } = currentStepData;
 			setMinutesWork(minutes);
 			setMinutes(minutes);
+			if (secondsWork === 0) {
+				setSeconds(59);
+			}
 			setSeconds(seconds);
 			setSecondsWork(seconds);
 		}
